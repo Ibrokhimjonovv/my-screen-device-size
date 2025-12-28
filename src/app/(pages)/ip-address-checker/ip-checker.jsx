@@ -4,12 +4,41 @@ import React, { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import "./ip-checker.scss"
 
+// Leaflet CSS fayllarini import qilish
+import 'leaflet/dist/leaflet.css'
+
+// Leaflet ikonlari uchun component
+const LeafletIconsFix = () => {
+  useEffect(() => {
+    // Faqat brauzerda ishlaydi
+    if (typeof window !== 'undefined') {
+      // L dynamic import qilish
+      import('leaflet').then((L) => {
+        delete L.Icon.Default.prototype._getIconUrl;
+        L.Icon.Default.mergeOptions({
+          iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+          iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+          shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+        });
+      }).catch(err => {
+        console.error('Failed to load Leaflet:', err);
+      });
+    }
+  }, []);
+  
+  return null;
+};
+
 // Leaflet komponentlarini dynamic import qilish (faqat brauzerda)
 const MapContainer = dynamic(
   () => import('react-leaflet').then((mod) => mod.MapContainer),
   { 
     ssr: false,
-    loading: () => <div style={{ height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f5f5f5' }}>Loading map...</div>
+    loading: () => (
+      <div className="map-placeholder">
+        Loading map...
+      </div>
+    )
   }
 )
 const TileLayer = dynamic(
@@ -18,43 +47,21 @@ const TileLayer = dynamic(
 )
 const Marker = dynamic(
   () => import('react-leaflet').then((mod) => mod.Marker),
-  { 
-    ssr: false,
-    loading: () => null
-  }
+  { ssr: false }
 )
 const Popup = dynamic(
   () => import('react-leaflet').then((mod) => mod.Popup),
   { ssr: false }
 )
 
-// Leaflet ikonlari uchun component
-const LeafletIconsFix = () => {
-  useEffect(() => {
-    // Faqat brauzerda ishlaydi
-    if (typeof window !== 'undefined') {
-      const L = require('leaflet');
-      delete L.Icon.Default.prototype._getIconUrl;
-      L.Icon.Default.mergeOptions({
-        iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-      });
-    }
-  }, []);
-  
-  return null;
-};
-
 const IpChecker = () => {
     const [ipData, setIpData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [ipv6, setIpv6] = useState(null);
-    const [isClient, setIsClient] = useState(false);
+    const [mapLoaded, setMapLoaded] = useState(false);
 
     useEffect(() => {
-        setIsClient(true);
         fetchIpData();
     }, []);
 
@@ -94,6 +101,7 @@ const IpChecker = () => {
                     lon: ipInfoResult.longitude
                 });
                 setIpv6(userIpv6);
+                setMapLoaded(true);
             } else {
                 throw new Error('Failed to fetch IP information');
             }
@@ -161,14 +169,15 @@ const IpChecker = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="map">
-                        <div className="mapp">
-                            {isClient && ipData.lat && ipData.lon && (
-                                <div style={{ height: '400px', width: '100%', borderRadius: '10px', overflow: 'hidden' }}>
+                    <div className="map-section">
+                        <div className="map-container-wrapper">
+                            {mapLoaded && ipData.lat && ipData.lon && (
+                                <div className="leaflet-map-container">
                                     <MapContainer
                                         center={[ipData.lat, ipData.lon]}
-                                        zoom={4}
-                                        style={{ height: '100%', width: '100%' }}
+                                        zoom={6}
+                                        className="leaflet-map"
+                                        scrollWheelZoom={false}
                                     >
                                         <TileLayer
                                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -178,6 +187,7 @@ const IpChecker = () => {
                                             <Popup>
                                                 <div>
                                                     <strong>{ipData.country}</strong><br />
+                                                    {ipData.city}<br />
                                                     {ipData.isp}
                                                 </div>
                                             </Popup>
