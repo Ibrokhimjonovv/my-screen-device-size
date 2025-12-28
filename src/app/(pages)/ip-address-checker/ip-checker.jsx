@@ -14,7 +14,7 @@ L.Icon.Default.mergeOptions({
 });
 
 import dynamic from 'next/dynamic';
-const MapWithNoSSR = dynamic(() => import('./MapWithNoSSR'), { ssr: false });
+const MapWithNoSSR = dynamic(() => import('../../../components/mapComp/map-component'), { ssr: false });
 
 const IpChecker = () => {
     const [ipData, setIpData] = useState(null);
