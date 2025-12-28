@@ -1,4 +1,4 @@
-// app/ip-address-checker/IpChecker.jsx
+// app/ip-address-checker/ip-checker.jsx
 'use client'
 import React, { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
@@ -7,7 +7,10 @@ import "./ip-checker.scss"
 // Leaflet komponentlarini dynamic import qilish (faqat brauzerda)
 const MapContainer = dynamic(
   () => import('react-leaflet').then((mod) => mod.MapContainer),
-  { ssr: false }
+  { 
+    ssr: false,
+    loading: () => <div style={{ height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f5f5f5' }}>Loading map...</div>
+  }
 )
 const TileLayer = dynamic(
   () => import('react-leaflet').then((mod) => mod.TileLayer),
@@ -15,12 +18,33 @@ const TileLayer = dynamic(
 )
 const Marker = dynamic(
   () => import('react-leaflet').then((mod) => mod.Marker),
-  { ssr: false }
+  { 
+    ssr: false,
+    loading: () => null
+  }
 )
 const Popup = dynamic(
   () => import('react-leaflet').then((mod) => mod.Popup),
   { ssr: false }
 )
+
+// Leaflet ikonlari uchun component
+const LeafletIconsFix = () => {
+  useEffect(() => {
+    // Faqat brauzerda ishlaydi
+    if (typeof window !== 'undefined') {
+      const L = require('leaflet');
+      delete L.Icon.Default.prototype._getIconUrl;
+      L.Icon.Default.mergeOptions({
+        iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+      });
+    }
+  }, []);
+  
+  return null;
+};
 
 const IpChecker = () => {
     const [ipData, setIpData] = useState(null);
@@ -106,6 +130,7 @@ const IpChecker = () => {
 
     return (
         <div id='ip-checker'>
+            <LeafletIconsFix />
             <div className="ad"></div>
             
             {!loading && ipData && (
@@ -118,7 +143,7 @@ const IpChecker = () => {
                             </div>
                             <div className="ip-address-nm">
                                 IPv6: {ipv6 ? (
-                                    <a href={ipv6} className="ip-address ipv6-address">{ipv6}</a>
+                                    <a href={`/ip-address-checker/ip/${ipv6}`} className="ip-address ipv6-address">{ipv6}</a>
                                 ) : (
                                     <span className="not-detected">Not detected</span>
                                 )}
@@ -139,7 +164,7 @@ const IpChecker = () => {
                     <div className="map">
                         <div className="mapp">
                             {isClient && ipData.lat && ipData.lon && (
-                                <div style={{ height: '400px', width: '100%' }}>
+                                <div style={{ height: '400px', width: '100%', borderRadius: '10px', overflow: 'hidden' }}>
                                     <MapContainer
                                         center={[ipData.lat, ipData.lon]}
                                         zoom={4}

@@ -1,14 +1,6 @@
 // app/ip-address-checker/page.jsx
-import dynamic from 'next/dynamic'
-
-// Faqat brauzerda yuklanadigan komponent
-const IpChecker = dynamic(
-  () => import('./ip-checker'),
-  { 
-    ssr: false,
-    loading: () => <div style={{padding: '20px', textAlign: 'center'}}>Loading IP checker...</div>
-  }
-)
+import { Suspense } from 'react'
+import IpChecker from './ip-checker'
 
 export const metadata = {
   title: 'My IP Address Checker - Find Your Public IP Instantly | м17',
@@ -41,5 +33,9 @@ export const metadata = {
 };
 
 export default function IpCheckerPage() {
-  return <IpChecker />
+  return (
+    <Suspense fallback={<div style={{padding: '20px', textAlign: 'center'}}>Loading IP checker...</div>}>
+      <IpChecker />
+    </Suspense>
+  )
 }

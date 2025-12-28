@@ -1,14 +1,6 @@
 // app/ip-address-checker/ip/[ip]/page.jsx
-import dynamic from 'next/dynamic'
-
-// Faqat brauzerda yuklanadigan komponent
-const IpDetailPage = dynamic(
-  () => import('./IpDetailPage'),
-  { 
-    ssr: false,
-    loading: () => <div style={{padding: '20px', textAlign: 'center'}}>Loading IP details...</div>
-  }
-)
+import { Suspense } from 'react'
+import IpDetail from './ip-detail'
 
 export async function generateMetadata({ params }) {
   const { ip } = await params
@@ -44,6 +36,12 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default function Page({ params }) {
-  return <IpDetailPage params={params} />
+export default async function Page({ params }) {
+  const { ip } = await params
+  
+  return (
+    <Suspense fallback={<div style={{padding: '20px', textAlign: 'center'}}>Loading IP details...</div>}>
+      <IpDetail ip={ip} />
+    </Suspense>
+  )
 }
