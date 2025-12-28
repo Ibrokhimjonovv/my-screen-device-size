@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 
 // Faqat brauzerda yuklanadigan komponent
 const IpChecker = dynamic(
-  () => import('./IpChecker'),
+  () => import('./ip-checker'),
   { 
     ssr: false,
     loading: () => <div style={{padding: '20px', textAlign: 'center'}}>Loading IP checker...</div>
