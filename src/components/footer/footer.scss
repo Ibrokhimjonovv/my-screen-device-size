@@ -1,0 +1,38 @@
+footer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 100px;
+    background-color: #f2f3f5;
+
+    a {
+        border-right: 5px solid red;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        color: #333;
+
+        &:hover {
+            text-decoration: underline;
+            background-color: #fff;
+        }
+
+        &:last-child {
+            border: none;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    footer {
+        height: unset;
+        grid-template-columns: repeat(1, 1fr);
+
+        a {
+            height: 70px;
+            border-right: none;
+            border-bottom: 2px solid rgba(255, 0, 0, 0.171);
+        }
+    }    
+}

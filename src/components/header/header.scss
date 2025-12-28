@@ -1,0 +1,131 @@
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 130px;
+  border: 1px solid #979797;
+  flex-direction: column;
+  row-gap: 10px;
+  position: relative;
+
+  .my-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 150px;
+    width: 100%;
+    background-color: #ffffff31;
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    z-index: -9999;
+    transform: translate(-20px, -20px);
+    transition: all 0.3s;
+
+    &.active {
+      height: 200px;
+      opacity: 1;
+      z-index: 9999;
+      transform: translate(0, 0);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 20px;
+
+      a {
+        font-size: 24px;
+        color: #222;
+        border-right: 2px solid #222;
+        padding-right: 20px;
+
+        &:last-child {
+          border: none;
+        }
+
+        &:hover {
+          font-weight: 600;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  button[type="button"] {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    font-size: 30px;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    animation: btnAnimation 2s forwards;
+    transition: all 0.3s !important;
+
+    &.active {
+      transform: translateY(-50%) rotate(45deg) !important;
+    }
+  }
+
+  @keyframes btnAnimation {
+    0% {
+      transform: translate(200px, -50%) rotate(360deg);
+    }
+
+    100% {
+      transform: translate(0, -50%) rotate(0);
+    }
+  }
+
+  .logo {
+    font-size: 45px;
+    text-transform: uppercase;
+    a {
+      color: #222;
+    }
+    img {
+      width: 33px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #header {
+    height: 100px;
+
+    .my-menu {
+      max-width: 100% !important;
+      width: 100%;
+      height: 160px !important;
+      nav {
+        flex-direction: column;
+        gap: 5px;
+        a {
+          border: none;
+          font-size: 18px;
+        }
+      }
+    }
+
+    button[type="button"] {
+      font-size: 24px;
+    }
+
+    .logo {
+      font-size: 25px;
+      text-transform: uppercase;
+      a {
+        color: #222;
+      }
+      img {
+        width: 20px;
+      }
+    }
+  }
+}

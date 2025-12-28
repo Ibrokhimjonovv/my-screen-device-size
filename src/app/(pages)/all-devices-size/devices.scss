@@ -1,0 +1,167 @@
+#devices-container {
+  max-width: 1366px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 50px;
+
+  .text-cont {
+    display: flex;
+  }
+
+  .texts {
+    width: 70%;
+    .small-colored {
+      color: #f64d62;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-weight: 500;
+      margin-top: 10px;
+    }
+
+    .no-longer-text {
+      color: #545454;
+      margin-top: 25px;
+      font-size: 20px;
+      line-height: 1.5;
+    }
+
+    .longer-text {
+      margin-top: 20px;
+      font-size: 14px;
+      line-height: 2;
+    }
+  }
+
+  .devices-ad {
+    width: 30%;
+    height: 100%;
+    min-height: 300px;
+    max-height: 300px;
+    // background-color: red;
+    // opacity: 0;
+  }
+
+  label {
+    margin-top: 40px;
+    color: #3e50b4;
+    text-align: center;
+    display: block;
+  }
+
+  .search {
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      width: 80%;
+      height: 60px;
+      border-radius: 100px;
+      background-color: #f1f4f8;
+      border: 1px solid #d9e3ec;
+      padding: 0 20px;
+      font-size: 16px;
+      transition: all 0.3s;
+
+      &:focus {
+        border-color: #f64d62;
+        box-shadow: 0 0 5px 0 rgba(246, 77, 98, 0.5);
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+    font-size: 14px;
+    border-collapse: collapse;
+
+    thead {
+      color: #fff;
+      height: 70px;
+      background-color: #3e50b4;
+    }
+
+    tbody {
+      tr {
+        background-color: #f8f9fb;
+        border-top: 5px solid #fff;
+        height: 50px;
+
+        &:hover {
+          background-color: #eaeff5;
+        }
+
+        td {
+          text-align: center;
+
+          a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+
+            &.type {
+              font-size: 24px;
+              color: #f64d62;
+            }
+
+            &.font-b {
+              font-weight: 500;
+            }
+
+            &.color {
+              color: #3e50b4;
+              letter-spacing: 1px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #devices-container {
+    padding: 20px 10px;
+
+    .text-cont {
+      flex-direction: column;
+    }
+
+    .texts {
+      width: 100%;
+    }
+
+    .devices-ad {
+      width: 100%;
+      height: 200px;
+      display: none;
+    }
+
+    label {
+      margin-top: 30px;
+    }
+
+    .search {
+      input {
+        width: 90%;
+      }
+    }
+
+    .table-scroller {
+      width: 100%;
+      overflow: auto;
+    }
+
+    table {
+      width: 700px;
+    }
+  }
+}

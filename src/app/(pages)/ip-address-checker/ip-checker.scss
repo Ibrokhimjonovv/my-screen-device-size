@@ -1,0 +1,208 @@
+#ip-checker {
+  padding: 20px 50px;
+
+  .ad {
+    max-width: 1366px;
+    margin: 0 auto;
+}
+
+  .ip-check-container {
+    max-width: 1366px;
+    margin: 10px auto;
+    background-color: #1f4973;
+    padding: 20px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    align-items: center;
+
+    .ip-datas {
+        width: 60%;
+      .ip-info {
+        h3 {
+            font-weight: 500;
+            font-size: 18px;
+            margin-bottom: 10px;
+            margin-left: 5px;
+        }
+        .ip-address-nm {
+            background-color: #2d5980;
+            padding: 20px;
+            margin-top: 1px;
+            font-size: 19px;
+
+            a {
+                color: #fff;
+                font-weight: 600;
+                text-decoration: underline;
+            }
+
+            span {
+                font-weight: 600;
+            }
+        }
+      }
+
+      .ip-location-info {
+        color: #fff;
+        
+        h3{
+            margin-top: 20px;
+            margin-bottom: 10px;
+            margin-left: 5px;
+        }
+
+        .ip-address-loc {
+            background-color: #2d5980;
+            padding: 20px;
+
+            p {
+                margin-top: 10px;
+                font-size: 17px;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+      }
+    }
+
+    .map {
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+
+        .mapp {
+            width: 80%;
+            height: 300px;
+        }
+
+        .click-for-more {
+            a {
+                color: #fff;
+                text-decoration: underline;
+                background-color: #f34337;
+                padding: 10px 20px;
+                display: block;
+
+                &:hover {
+                    background-color: #f34337d3;
+                }
+            }
+        }
+
+        .leaflet-control-attribution.leaflet-control {
+            display: none;
+        }
+    }
+
+  }
+
+  .more-text-informations {
+    max-width: 1366px;
+    margin: 0 auto;
+    h1 {
+        margin-top: 15px !important;
+    }
+    h1, h2 {
+        color: #1d4672;
+    }
+
+    h2 {
+        margin-top: 20px;
+    }
+
+    p {
+        color: #333;
+        margin-top: 10px;
+        font-size: 17px;
+        font-weight: 400;
+    }
+
+    #txt2 {
+        margin-top: 30px;
+    }
+
+    ul {
+        margin-top: 20px;
+        margin-left: 30px;
+        li {
+            list-style:disc;
+            margin-top: 15px;
+
+            span {
+                font-weight: 600;
+            }
+        }
+    }
+
+  }
+}
+
+@media screen and (max-width: 500px) {
+    #ip-checker {
+        padding: 0;
+        .ip-check-container {
+            margin: 0;
+            padding: 10px;
+            width: 100%;
+            flex-direction: column;
+            
+            .ip-datas {
+                width: 100%;
+                
+                .ip-address-nm {
+                    display: flex !important;
+                    justify-content: space-between !important;
+                }
+                p {
+                    span {
+                        &:last-child {
+                            text-align: right !important;
+                        }
+                    }
+                }
+            }
+
+            .map {
+                width: 100%;
+
+                .mapp {
+                    width: 100%;
+                }
+
+                .click-for-more {
+                    width: 100%;
+                    a {
+                        text-align: center;
+                        width: 100%;
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .more-text-informations {
+            padding: 10px;
+
+            h1 {
+                font-size: 22px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 15px;
+            }
+
+            ul {
+                font-size: 15px;
+            }
+        }
+    }
+}

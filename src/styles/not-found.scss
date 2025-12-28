@@ -1,0 +1,23 @@
+#not-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    width: 100%;
+    flex-direction: column;
+
+    .tt {
+        font-size: 50px;
+        font-weight: 900;
+    }
+
+    h1 {
+        text-transform: uppercase;
+    }
+
+    a {
+        margin-top: 20px;
+        font-size: 20px;
+        text-decoration: underline;
+    }
+}

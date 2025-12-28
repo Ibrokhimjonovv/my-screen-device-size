@@ -1,0 +1,42 @@
+// app/ip-address-checker/ip/[ip]/page.jsx
+
+import IpDetail from "./ip-detail";
+
+export async function generateMetadata({ params }) {
+  const {ip} = await params;
+
+  return {
+    title: `IP Details for ${ip} | What's my ip address`,
+    description: `View detailed information about IP address ${ip}: ISP, country, region, city, timezone, and coordinates.`,
+    alternates: {
+      canonical: `https://my-device-size.vercel.app/ip-address-checker/ip/${ip}`,
+    },
+    openGraph: {
+      title: `IP Details for ${ip}`,
+      description: `Find all information for ${ip}: ISP, organization, timezone, region, and coordinates.`,
+      url: `https://my-device-size.vercel.app/ip-address-checker/ip/${ip}`,
+      siteName: "What's my ip address IP Tools",
+      images: [
+        {
+          url: "https://my-device-size.vercel.app/preview-devices.png",
+          width: 768,
+          height: 292,
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `IP Details for ${ip}`,
+      description: `Discover ISP, region, timezone, and location details for ${ip} instantly.`,
+      images: [
+        "https://my-device-size.vercel.app/preview-devices.png",
+      ],
+    },
+  };
+}
+
+export default async function Page({ params }) {
+  const { ip } = await params;
+  return <IpDetail ip={ip} />;
+}
