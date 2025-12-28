@@ -1,12 +1,20 @@
 // app/ip-address-checker/ip/[ip]/page.jsx
+import dynamic from 'next/dynamic'
 
-import IpDetail from "./ip-detail";
+// Faqat brauzerda yuklanadigan komponent
+const IpDetailPage = dynamic(
+  () => import('./IpDetailPage'),
+  { 
+    ssr: false,
+    loading: () => <div style={{padding: '20px', textAlign: 'center'}}>Loading IP details...</div>
+  }
+)
 
 export async function generateMetadata({ params }) {
-  const {ip} = await params;
-
+  const { ip } = await params
+  
   return {
-    title: `IP Details for ${ip} | What's my ip address`,
+    title: `IP Details for ${ip} | My Device Size`,
     description: `View detailed information about IP address ${ip}: ISP, country, region, city, timezone, and coordinates.`,
     alternates: {
       canonical: `https://my-device-size.vercel.app/ip-address-checker/ip/${ip}`,
@@ -15,7 +23,7 @@ export async function generateMetadata({ params }) {
       title: `IP Details for ${ip}`,
       description: `Find all information for ${ip}: ISP, organization, timezone, region, and coordinates.`,
       url: `https://my-device-size.vercel.app/ip-address-checker/ip/${ip}`,
-      siteName: "What's my ip address IP Tools",
+      siteName: "My Device Size IP Tools",
       images: [
         {
           url: "https://my-device-size.vercel.app/preview-devices.png",
@@ -33,10 +41,9 @@ export async function generateMetadata({ params }) {
         "https://my-device-size.vercel.app/preview-devices.png",
       ],
     },
-  };
+  }
 }
 
-export default async function Page({ params }) {
-  const { ip } = await params;
-  return <IpDetail ip={ip} />;
+export default function Page({ params }) {
+  return <IpDetailPage params={params} />
 }

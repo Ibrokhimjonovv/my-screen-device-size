@@ -1,27 +1,36 @@
-"use client"
+// app/ip-address-checker/IpChecker.jsx
+'use client'
 import React, { useState, useEffect } from 'react'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import "./ip-checker.scss";
+import dynamic from 'next/dynamic'
+import "./ip-checker.scss"
 
-// Leaflet icons fix
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-});
+// Leaflet komponentlarini dynamic import qilish (faqat brauzerda)
+const MapContainer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.MapContainer),
+  { ssr: false }
+)
+const TileLayer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.TileLayer),
+  { ssr: false }
+)
+const Marker = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Marker),
+  { ssr: false }
+)
+const Popup = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Popup),
+  { ssr: false }
+)
 
 const IpChecker = () => {
     const [ipData, setIpData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [ipv6, setIpv6] = useState(null);
-
-
+    const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
+        setIsClient(true);
         fetchIpData();
     }, []);
 
@@ -30,12 +39,10 @@ const IpChecker = () => {
             setError(null)
             setLoading(true);
 
-            // IPv4 ni olish
             const ipv4Response = await fetch('https://api.ipify.org?format=json');
             const ipv4Result = await ipv4Response.json();
             const userIpv4 = ipv4Result.ip;
 
-            // IPv6 ni olish
             let userIpv6 = null;
             try {
                 const ipv6Response = await fetch('https://api64.ipify.org?format=json');
@@ -47,7 +54,6 @@ const IpChecker = () => {
                 console.log('IPv6 not available');
             }
 
-            // ✅ HTTPS versiyasini ishlatish
             const ipInfoResponse = await fetch(`https://ipapi.co/${userIpv4}/json/`);
             const ipInfoResult = await ipInfoResponse.json();
 
@@ -75,59 +81,65 @@ const IpChecker = () => {
         }
     };
 
-    // IPv6 formatini tekshirish funksiyasi
-    const isIPv6 = (ip) => {
-        return ip && ip.includes(':');
-    };
-    return (
-        <div id='ip-checker'>
-            <div className="ad">
-            </div>
-            {loading && (
+    if (loading) {
+        return (
+            <div id='ip-checker'>
                 <div className="ip-check-container">
                     <div className="loading">Loading data...</div>
                 </div>
-            )}
+            </div>
+        )
+    }
 
-            {error ? (
+    if (error) {
+        return (
+            <div id='ip-checker'>
                 <div className="ip-check-container">
                     <div className="error">{error}</div>
                     <button onClick={fetchIpData} className="retry-btn">
                         Try Again
                     </button>
                 </div>
-            ) : (
-                !loading && ipData && (
-                    <div className="ip-check-container">
-                        <div className="ip-datas">
-                            <div className="ip-info">
-                                <h3>My IP Address:</h3>
-                                <div className="ip-address-nm">
-                                    IPv4: <a href={`/ip-address-checker/ip/${ipData.userIp}`} className="ip-address">{ipData.userIp}</a>
-                                </div>
-                                <div className="ip-address-nm">
-                                    IPv6: {ipv6 ? (
-                                        <a href={ipv6} className="ip-address ipv6-address">{ipv6}</a>
-                                    ) : (
-                                        <span className="not-detected">Not detected</span>
-                                    )}
-                                </div>
+            </div>
+        )
+    }
+
+    return (
+        <div id='ip-checker'>
+            <div className="ad"></div>
+            
+            {!loading && ipData && (
+                <div className="ip-check-container">
+                    <div className="ip-datas">
+                        <div className="ip-info">
+                            <h3>My IP Address:</h3>
+                            <div className="ip-address-nm">
+                                IPv4: <a href={`/ip-address-checker/ip/${ipData.userIp}`} className="ip-address">{ipData.userIp}</a>
                             </div>
-                            <div className="ip-location-info">
-                                <h3>My IP Information:</h3>
-                                <div className="ip-address-loc">
-                                    <p><span>ISP:</span> <span>{ipData.isp}</span></p>
-                                    <p><span>Country:</span> <span>{ipData.country}</span></p>
-                                    <p><span>Country Code:</span> <span>{ipData.countryCode}</span></p>
-                                    <p><span>City:</span> <span>{ipData.city}</span></p>
-                                    <p><span>Region:</span> <span>{ipData.regionName}</span></p>
-                                    <p><span>Timezone:</span> <span>{ipData.timezone}</span></p>
-                                </div>
+                            <div className="ip-address-nm">
+                                IPv6: {ipv6 ? (
+                                    <a href={ipv6} className="ip-address ipv6-address">{ipv6}</a>
+                                ) : (
+                                    <span className="not-detected">Not detected</span>
+                                )}
                             </div>
                         </div>
-                        <div className="map">
-                            <div className="mapp">
-                                {ipData.lat && ipData.lon && (
+                        <div className="ip-location-info">
+                            <h3>My IP Information:</h3>
+                            <div className="ip-address-loc">
+                                <p><span>ISP:</span> <span>{ipData.isp}</span></p>
+                                <p><span>Country:</span> <span>{ipData.country}</span></p>
+                                <p><span>Country Code:</span> <span>{ipData.countryCode}</span></p>
+                                <p><span>City:</span> <span>{ipData.city}</span></p>
+                                <p><span>Region:</span> <span>{ipData.regionName}</span></p>
+                                <p><span>Timezone:</span> <span>{ipData.timezone}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="map">
+                        <div className="mapp">
+                            {isClient && ipData.lat && ipData.lon && (
+                                <div style={{ height: '400px', width: '100%' }}>
                                     <MapContainer
                                         center={[ipData.lat, ipData.lon]}
                                         zoom={4}
@@ -146,27 +158,26 @@ const IpChecker = () => {
                                             </Popup>
                                         </Marker>
                                     </MapContainer>
-                                )}
-                            </div>
-                            <div className="click-for-more">
-                                <a href={`/ip-address-checker/ip/${ipData.userIp}`}>
-                                    Click for more your IP information
-                                </a>
-                            </div>
+                                </div>
+                            )}
+                        </div>
+                        <div className="click-for-more">
+                            <a href={`/ip-address-checker/ip/${ipData.userIp}`}>
+                                Click for more your IP information
+                            </a>
                         </div>
                     </div>
-                )
+                </div>
             )}
 
-            <div className="ad">
-            </div>
+            <div className="ad"></div>
 
             <div className="more-text-informations">
                 <h1>Frequently Asked Questions</h1>
                 <h2>Whats my IP address?</h2>
                 <p id='txt1'>Wondering "how can I check my IP?" You're not alone. Your IP address is a unique number linked to your online activity, somewhat like a return address on a letter.</p>
                 <p id="txt2">
-                    Whether you're checking emails, shopping, or chatting online, your IP address works tirelessly behind the scenes. It's assigned by your Internet Service Provider (ISP), allowing you to connect to the Internet through a network, whether at home, work, or on the go. Your IP address can change, especially when you switch networks while traveling. If you’re curious to know what is my IP, scroll to the top of the page to see your digits!
+                    Whether you're checking emails, shopping, or chatting online, your IP address works tirelessly behind the scenes. It's assigned by your Internet Service Provider (ISP), allowing you to connect to the Internet through a network, whether at home, work, or on the go. Your IP address can change, especially when you switch networks while traveling. If you're curious to know what is my IP, scroll to the top of the page to see your digits!
                 </p>
                 <h2>What is a public IP address?</h2>
                 <p id="txt1">A public IP address is a unique numerical label assigned to each device connected to the Internet, allowing for the identification and communication between devices on a global scale.</p>
@@ -215,11 +226,10 @@ const IpChecker = () => {
                     </li>
                 </ul>
 
-                <div className="square-ad">
-                </div>
+                <div className="square-ad"></div>
             </div>
         </div>
     )
 }
 
-export default IpChecker;
+export default IpChecker

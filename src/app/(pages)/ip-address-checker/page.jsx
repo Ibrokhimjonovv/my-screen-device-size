@@ -1,4 +1,14 @@
-import IpChecker from "./ip-checker";
+// app/ip-address-checker/page.jsx
+import dynamic from 'next/dynamic'
+
+// Faqat brauzerda yuklanadigan komponent
+const IpChecker = dynamic(
+  () => import('./IpChecker'),
+  { 
+    ssr: false,
+    loading: () => <div style={{padding: '20px', textAlign: 'center'}}>Loading IP checker...</div>
+  }
+)
 
 export const metadata = {
   title: 'My IP Address Checker - Find Your Public IP Instantly | м17',
@@ -8,7 +18,7 @@ export const metadata = {
   robots: 'index, follow',
   openGraph: {
     type: 'website',
-    url: 'https://my-device-size.vercel.app/ip-checker',
+    url: 'https://my-device-size.vercel.app/ip-address-checker',
     siteName: 'My Device Size | м17',
     title: 'Free IP Address Checker - Find Your Public IP Instantly | м17',
     description: 'Instantly check your public IP address and location. See your ISP, country, city, and view your location on interactive map.',
@@ -22,7 +32,7 @@ export const metadata = {
     images: ['https://my-device-size.vercel.app/preview-ip.png'],
   },
   alternates: {
-    canonical: 'https://my-device-size.vercel.app/ip-checker',
+    canonical: 'https://my-device-size.vercel.app/ip-address-checker',
   },
   other: {
     'geo.region': 'global',
@@ -31,5 +41,5 @@ export const metadata = {
 };
 
 export default function IpCheckerPage() {
-  return <IpChecker />;
+  return <IpChecker />
 }

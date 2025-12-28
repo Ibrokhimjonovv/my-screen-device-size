@@ -1,25 +1,36 @@
+// app/ip-address-checker/ip/[ip]/ip-detail.jsx
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import L from 'leaflet'
-import 'leaflet/dist/leaflet.css'
+import dynamic from 'next/dynamic'
 import "./ip.scss"
 
-// Leaflet icons fix
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-});
+// Leaflet komponentlarini dynamic import qilish (faqat brauzerda)
+const MapContainer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.MapContainer),
+  { ssr: false }
+)
+const TileLayer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.TileLayer),
+  { ssr: false }
+)
+const Marker = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Marker),
+  { ssr: false }
+)
+const Popup = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Popup),
+  { ssr: false }
+)
 
 const IpDetail = ({ ip }) => {
     const [ipData, setIpData] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [isClient, setIsClient] = useState(false)
 
     useEffect(() => {
+        setIsClient(true)
         if (ip) {
             fetchIpDetails(ip)
         }
@@ -30,12 +41,10 @@ const IpDetail = ({ ip }) => {
             setLoading(true);
             setError(null);
 
-            // ✅ ipapi.co dan foydalanish (HTTPS qo'llab-quvvatlaydi)
             const response = await fetch(`https://ipapi.co/${ipAddress}/json/`);
             const data = await response.json();
 
             if (data.error !== true && data.ip) {
-                // Ma'lumotlarni formatlash
                 setIpData({
                     query: data.ip,
                     as: data.asn ? `${data.asn} ${data.org || ''}`.trim() : 'Unknown',
@@ -62,14 +71,12 @@ const IpDetail = ({ ip }) => {
         }
     };
 
-    // IP manzilni decimal formatga o'tkazish
     const ipToDecimal = (ip) => {
         return ip.split('.').reduce((acc, octet, index) => {
             return acc + parseInt(octet) * Math.pow(256, 3 - index)
         }, 0)
     }
 
-    // Koordinatalarni gradus formatga o'tkazish
     const formatCoordinate = (coord, isLatitude) => {
         const absCoord = Math.abs(coord)
         const degrees = Math.floor(absCoord)
@@ -165,25 +172,27 @@ const IpDetail = ({ ip }) => {
                         </p>
                     </div>
                     <div className="map">
-                        {ipData.lat && ipData.lon && (
-                            <MapContainer
-                                center={[ipData.lat, ipData.lon]}
-                                zoom={4}
-                                style={{ height: '100%', width: '100%' }}
-                            >
-                                <TileLayer
-                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                />
-                                <Marker position={[ipData.lat, ipData.lon]}>
-                                    <Popup>
-                                        <div>
-                                            <strong>{ipData.country}</strong><br />
-                                            {ipData.isp}
-                                        </div>
-                                    </Popup>
-                                </Marker>
-                            </MapContainer>
+                        {isClient && ipData.lat && ipData.lon && (
+                            <div style={{ height: '400px', width: '100%' }}>
+                                <MapContainer
+                                    center={[ipData.lat, ipData.lon]}
+                                    zoom={4}
+                                    style={{ height: '100%', width: '100%' }}
+                                >
+                                    <TileLayer
+                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                    />
+                                    <Marker position={[ipData.lat, ipData.lon]}>
+                                        <Popup>
+                                            <div>
+                                                <strong>{ipData.country}</strong><br />
+                                                {ipData.isp}
+                                            </div>
+                                        </Popup>
+                                    </Marker>
+                                </MapContainer>
+                            </div>
                         )}
                     </div>
                 </div>
@@ -191,8 +200,7 @@ const IpDetail = ({ ip }) => {
                     Latitude and Longitude are often near the center of population. These values are not precise enough to be used to identify a specific address, individual, or for legal purposes. IP data from IP2Location.
                 </p>
             </div>
-            <div className="square-ad">
-                </div>
+            <div className="square-ad"></div>
         </div>
     )
 }
