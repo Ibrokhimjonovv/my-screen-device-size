@@ -6,7 +6,7 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import "./ip.scss"
 import dynamic from 'next/dynamic';
-const MapWithNoSSR = dynamic(() => import('../../../components/mapComp/map-component'), { ssr: false });
+const MapWithNoSSR = dynamic(() => import('../../../../../components/mapComp/map-component'), { ssr: false });
 
 
 // Leaflet icons fix
