@@ -22,7 +22,6 @@ export const metadata = {
     description: 'Complete guide to hiding your IP address with VPNs and privacy tools. Protect your online identity today.',
     images: ['https://my-device-size.vercel.app/preview-hide-ip.png'],
   },
-  themeColor: '#0ea5e9',
   alternates: {
     canonical: 'https://my-device-size.vercel.app/hide-my-ip-address',
   },

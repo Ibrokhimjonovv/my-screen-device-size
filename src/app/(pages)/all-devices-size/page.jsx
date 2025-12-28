@@ -21,7 +21,6 @@ export const metadata = {
     description: 'Find viewport dimensions, screen resolutions, and pixel ratios for all popular devices. Essential tool for responsive web design.',
     images: ['https://my-device-size.vercel.app/preview-devices.png'],
   },
-  themeColor: '#0ea5e9',
   alternates: {
     canonical: 'https://my-device-size.vercel.app/all-devices-size',
   },

@@ -22,7 +22,6 @@ export const metadata = {
     description: 'Quickly convert px, em, rem, cm, mm, pt, vw, vh and other units. Useful for developers designing responsive web layouts.',
     images: ['https://my-device-size.vercel.app/preview-devices.png'],
   },
-  themeColor: '#0ea5e9',
   alternates: {
     canonical: 'https://my-device-size.vercel.app/units-of-measurement',
   },
