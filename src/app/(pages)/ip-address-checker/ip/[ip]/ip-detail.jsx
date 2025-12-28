@@ -5,12 +5,38 @@ import React, { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import "./ip.scss"
 
+// Leaflet CSS fayllarini import qilish
+import 'leaflet/dist/leaflet.css'
+
+// Leaflet ikonlari uchun component
+const LeafletIconsFix = () => {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('leaflet').then((L) => {
+        delete L.Icon.Default.prototype._getIconUrl;
+        L.Icon.Default.mergeOptions({
+          iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+          iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+          shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+        });
+      });
+    }
+  }, []);
+  
+  return null;
+};
+
 // Leaflet komponentlarini dynamic import qilish (faqat brauzerda)
 const MapContainer = dynamic(
   () => import('react-leaflet').then((mod) => mod.MapContainer),
   { 
     ssr: false,
-    loading: () => <div style={{ height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f5f5f5' }}>Loading map...</div>
+    loading: () => (
+      <div className="map-placeholder">
+        <div className="loading-spinner"></div>
+        <p>Loading map...</p>
+      </div>
+    )
   }
 )
 const TileLayer = dynamic(
@@ -19,42 +45,20 @@ const TileLayer = dynamic(
 )
 const Marker = dynamic(
   () => import('react-leaflet').then((mod) => mod.Marker),
-  { 
-    ssr: false,
-    loading: () => null
-  }
+  { ssr: false }
 )
 const Popup = dynamic(
   () => import('react-leaflet').then((mod) => mod.Popup),
   { ssr: false }
 )
 
-// Leaflet ikonlari uchun component
-const LeafletIconsFix = () => {
-  useEffect(() => {
-    // Faqat brauzerda ishlaydi
-    if (typeof window !== 'undefined') {
-      const L = require('leaflet');
-      delete L.Icon.Default.prototype._getIconUrl;
-      L.Icon.Default.mergeOptions({
-        iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-      });
-    }
-  }, []);
-  
-  return null;
-};
-
 const IpDetail = ({ ip }) => {
     const [ipData, setIpData] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-    const [isClient, setIsClient] = useState(false)
+    const [mapLoaded, setMapLoaded] = useState(false)
 
     useEffect(() => {
-        setIsClient(true)
         if (ip) {
             fetchIpDetails(ip)
         }
@@ -84,6 +88,7 @@ const IpDetail = ({ ip }) => {
                     lat: data.latitude || 0,
                     lon: data.longitude || 0
                 });
+                setMapLoaded(true);
             } else {
                 throw new Error(data.reason || 'Failed to fetch IP details');
             }
@@ -117,7 +122,10 @@ const IpDetail = ({ ip }) => {
         return (
             <div id='ip-detail'>
                 <div className="ip-infos">
-                    <div className="loading">Loading IP details...</div>
+                    <div className="loading-container">
+                        <div className="loading-spinner"></div>
+                        <p>Loading IP details...</p>
+                    </div>
                 </div>
             </div>
         )
@@ -127,10 +135,13 @@ const IpDetail = ({ ip }) => {
         return (
             <div id='ip-detail'>
                 <div className="ip-infos">
-                    <div className="error">{error}</div>
-                    <button onClick={() => fetchIpDetails(ip)} className="retry-btn">
-                        Try Again
-                    </button>
+                    <div className="error-message">
+                        <div className="error-icon">⚠️</div>
+                        <p>{error}</p>
+                        <button onClick={() => fetchIpDetails(ip)} className="retry-btn">
+                            Try Again
+                        </button>
+                    </div>
                 </div>
             </div>
         )
@@ -138,94 +149,135 @@ const IpDetail = ({ ip }) => {
 
     return (
         <div id='ip-detail'>
+            <div className="ad-section top">
+                <div className="square-ad">Advertisement Space</div>
+            </div>
             <LeafletIconsFix />
+            
+            <div className="ip-header">
+                <h1>IP Address Details</h1>
+                <div className="ip-badge">{ip}</div>
+            </div>
+
             <div className="ip-infos">
-                <h2>IP Details For: {ip}</h2>
-                <div className="infos">
-                    <div className="txts">
-                        <p>
-                            <span>Decimal:</span>
-                            <span>{ipToDecimal(ip)}</span>
-                        </p>
-                        <p>
-                            <span>Hostname:</span>
-                            <span>{ipData.query}</span>
-                        </p>
-                        <p>
-                            <span>ASN:</span>
-                            <span>{ipData.as.split(' ')[0]}</span>
-                        </p>
-                        <p>
-                            <span>ISP:</span>
-                            <span>{ipData.isp}</span>
-                        </p>
-                        <p>
-                            <span>Organization:</span>
-                            <span>{ipData.org}</span>
-                        </p>
-                        <p>
-                            <span>Services:</span>
-                            <span>None detected</span>
-                        </p>
-                        <p>
-                            <span>Country:</span>
-                            <span>{ipData.country} ({ipData.countryCode})</span>
-                        </p>
-                        <p>
-                            <span>State/Region:</span>
-                            <span>{ipData.regionName} ({ipData.region})</span>
-                        </p>
-                        <p>
-                            <span>City:</span>
-                            <span>{ipData.city}</span>
-                        </p>
-                        <p>
-                            <span>ZIP Code:</span>
-                            <span>{ipData.zip || 'Not available'}</span>
-                        </p>
-                        <p>
-                            <span>Timezone:</span>
-                            <span>{ipData.timezone}</span>
-                        </p>
-                        <p>
-                            <span>Latitude:</span>
-                            <span>{ipData.lat} ({formatCoordinate(ipData.lat, true)})</span>
-                        </p>
-                        <p>
-                            <span>Longitude:</span>
-                            <span>{ipData.lon} ({formatCoordinate(ipData.lon, false)})</span>
-                        </p>
-                    </div>
-                    <div className="map">
-                        {isClient && ipData.lat && ipData.lon && (
-                            <div style={{ height: '400px', width: '100%', borderRadius: '10px', overflow: 'hidden' }}>
-                                <MapContainer
-                                    center={[ipData.lat, ipData.lon]}
-                                    zoom={4}
-                                    style={{ height: '100%', width: '100%' }}
-                                >
-                                    <TileLayer
-                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                    />
-                                    <Marker position={[ipData.lat, ipData.lon]}>
-                                        <Popup>
-                                            <div>
-                                                <strong>{ipData.country}</strong><br />
-                                                {ipData.isp}
-                                            </div>
-                                        </Popup>
-                                    </Marker>
-                                </MapContainer>
+                <div className="info-grid">
+                    <div className="info-section">
+                        <h2>Network Information</h2>
+                        <div className="info-cards">
+                            <div className="info-card">
+                                <span className="info-label">Decimal</span>
+                                <span className="info-value">{ipToDecimal(ip)}</span>
                             </div>
+                            <div className="info-card">
+                                <span className="info-label">Hostname</span>
+                                <span className="info-value">{ipData.query}</span>
+                            </div>
+                            <div className="info-card">
+                                <span className="info-label">ASN</span>
+                                <span className="info-value">{ipData.as.split(' ')[0]}</span>
+                            </div>
+                            <div className="info-card">
+                                <span className="info-label">ISP</span>
+                                <span className="info-value">{ipData.isp}</span>
+                            </div>
+                            <div className="info-card">
+                                <span className="info-label">Organization</span>
+                                <span className="info-value">{ipData.org}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="info-section">
+                        <h2>Location Information</h2>
+                        <div className="info-cards">
+                            <div className="info-card">
+                                <span className="info-label">Country</span>
+                                <div className="info-value-with-flag">
+                                    <span className="country-flag">{ipData.countryCode}</span>
+                                    <span>{ipData.country}</span>
+                                </div>
+                            </div>
+                            <div className="info-card">
+                                <span className="info-label">Region</span>
+                                <span className="info-value">{ipData.regionName} ({ipData.region})</span>
+                            </div>
+                            <div className="info-card">
+                                <span className="info-label">City</span>
+                                <span className="info-value">{ipData.city}</span>
+                            </div>
+                            <div className="info-card">
+                                <span className="info-label">ZIP Code</span>
+                                <span className="info-value">{ipData.zip || 'Not available'}</span>
+                            </div>
+                            <div className="info-card">
+                                <span className="info-label">Timezone</span>
+                                <span className="info-value">{ipData.timezone}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="info-section full-width">
+                        <h2>Geographic Coordinates</h2>
+                        <div className="coordinates-grid">
+                            <div className="coordinate-card">
+                                <span className="coordinate-label">Latitude</span>
+                                <div className="coordinate-value">
+                                    <span className="coordinate-number">{ipData.lat}</span>
+                                    <span className="coordinate-dms">({formatCoordinate(ipData.lat, true)})</span>
+                                </div>
+                            </div>
+                            <div className="coordinate-card">
+                                <span className="coordinate-label">Longitude</span>
+                                <div className="coordinate-value">
+                                    <span className="coordinate-number">{ipData.lon}</span>
+                                    <span className="coordinate-dms">({formatCoordinate(ipData.lon, false)})</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="map-section">
+                    <h2>Location on Map</h2>
+                    <div className="map-container">
+                        {mapLoaded && ipData.lat && ipData.lon && (
+                            <MapContainer
+                                center={[ipData.lat, ipData.lon]}
+                                zoom={8}
+                                className="leaflet-map"
+                                scrollWheelZoom={true}
+                            >
+                                <TileLayer
+                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                />
+                                <Marker position={[ipData.lat, ipData.lon]}>
+                                    <Popup>
+                                        <div className="map-popup">
+                                            <h4>{ipData.city}, {ipData.country}</h4>
+                                            <p><strong>IP:</strong> {ip}</p>
+                                            <p><strong>ISP:</strong> {ipData.isp}</p>
+                                            <p><strong>Coordinates:</strong> {ipData.lat.toFixed(4)}, {ipData.lon.toFixed(4)}</p>
+                                        </div>
+                                    </Popup>
+                                </Marker>
+                            </MapContainer>
                         )}
                     </div>
                 </div>
-                <p id='war'>
-                    Latitude and Longitude are often near the center of population. These values are not precise enough to be used to identify a specific address, individual, or for legal purposes. IP data from IP2Location.
-                </p>
+
+                <div className="disclaimer">
+                    <div className="disclaimer-icon">ℹ️</div>
+                    <p>
+                        Latitude and Longitude are often near the center of population. These values are not precise enough 
+                        to be used to identify a specific address, individual, or for legal purposes. IP data from IP2Location.
+                    </p>
+                </div>
             </div>
-            <div className="square-ad"></div>
+
+            <div className="ad-section">
+                <div className="square-ad">Advertisement Space</div>
+            </div>
         </div>
     )
 }

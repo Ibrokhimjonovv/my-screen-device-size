@@ -1,243 +1,309 @@
-/* app/globals.css yoki app/layout.css ga qo'shing */
-.leaflet-container {
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+.leaflet-bottom.leaflet-right {
+    display: none !important;
 }
 
-.leaflet-popup-content-wrapper {
-  border-radius: 8px;
-}
-
-.leaflet-popup-content {
-  margin: 15px;
-}
-
-.leaflet-control-zoom {
-  border: none !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
-}
-
-.leaflet-control-zoom a {
-  background: white !important;
-  color: #333 !important;
-  border-radius: 4px !important;
-  margin: 2px !important;
-}
-
-.leaflet-control-attribution {
-  background: rgba(255, 255, 255, 0.8) !important;
-  padding: 2px 8px !important;
-  border-radius: 4px !important;
-  font-size: 11px !important;
-}
-
+/* app/ip-address-checker/ip-checker.scss */
 #ip-checker {
-  padding: 20px 50px;
-
-  .ad {
-    max-width: 1366px;
-    margin: 0 auto;
-}
-
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  
   .ip-check-container {
-    max-width: 1366px;
-    margin: 10px auto;
-    background-color: #1f4973;
-    padding: 20px;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    gap: 5px;
-    align-items: center;
-
-    .ip-datas {
-        width: 60%;
-      .ip-info {
-        h3 {
-            font-weight: 500;
-            font-size: 18px;
-            margin-bottom: 10px;
-            margin-left: 5px;
-        }
-        .ip-address-nm {
-            background-color: #2d5980;
-            padding: 20px;
-            margin-top: 1px;
-            font-size: 19px;
-
-            a {
-                color: #fff;
-                font-weight: 600;
-                text-decoration: underline;
-            }
-
-            span {
-                font-weight: 600;
-            }
-        }
-      }
-
-      .ip-location-info {
-        color: #fff;
-        
-        h3{
-            margin-top: 20px;
-            margin-bottom: 10px;
-            margin-left: 5px;
-        }
-
-        .ip-address-loc {
-            background-color: #2d5980;
-            padding: 20px;
-
-            p {
-                margin-top: 10px;
-                font-size: 17px;
-                display: flex;
-                justify-content: space-between;
-            }
-        }
-      }
-    }
-
-    .map {
-        width: 40%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 20px;
-
-        .mapp {
-            width: 80%;
-            height: 300px;
-        }
-
-        .click-for-more {
-            a {
-                color: #fff;
-                text-decoration: underline;
-                background-color: #f34337;
-                padding: 10px 20px;
-                display: block;
-
-                &:hover {
-                    background-color: #f34337d3;
-                }
-            }
-        }
-
-        .leaflet-control-attribution.leaflet-control {
-            display: none;
-        }
-    }
-
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin: 20px 0;
+    border: 1px solid #eaeaea;
   }
-
-  .more-text-informations {
-    max-width: 1366px;
-    margin: 0 auto;
-    h1 {
-        margin-top: 15px !important;
-    }
-    h1, h2 {
-        color: #1d4672;
-    }
-
-    h2 {
-        margin-top: 20px;
-    }
-
-    p {
+  
+  .ip-datas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+    
+    .ip-info, .ip-location-info {
+      h3 {
+        margin: 0 0 20px 0;
         color: #333;
-        margin-top: 10px;
-        font-size: 17px;
-        font-weight: 400;
+        font-size: 22px;
+        font-weight: 600;
+        border-bottom: 2px solid #0070f3;
+        padding-bottom: 10px;
+      }
     }
-
-    #txt2 {
-        margin-top: 30px;
-    }
-
-    ul {
-        margin-top: 20px;
-        margin-left: 30px;
-        li {
-            list-style:disc;
-            margin-top: 15px;
-
-            span {
-                font-weight: 600;
-            }
+    
+    .ip-address-nm {
+      margin-bottom: 15px;
+      font-size: 16px;
+      color: #555;
+      
+      .ip-address {
+        color: #0070f3;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 18px;
+        margin-left: 8px;
+        
+        &:hover {
+          text-decoration: underline;
+          color: #0051cc;
         }
+        
+        &.ipv6-address {
+          font-size: 14px;
+          word-break: break-all;
+        }
+      }
+      
+      .not-detected {
+        color: #999;
+        font-style: italic;
+        margin-left: 8px;
+      }
     }
-
+    
+    .ip-address-loc {
+      p {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid #f0f0f0;
+        margin: 0;
+        
+        span:first-child {
+          font-weight: 600;
+          color: #666;
+          min-width: 140px;
+        }
+        
+        span:last-child {
+          color: #333;
+          text-align: right;
+          flex: 1;
+        }
+      }
+    }
+  }
+  
+  .map-section {
+    margin-top: 30px;
+    
+    .map-container-wrapper {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      
+      .leaflet-map-container {
+        height: 450px;
+        width: 100%;
+        
+        .leaflet-map {
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+    
+    .map-placeholder {
+      height: 450px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8f9fa;
+      border-radius: 12px;
+      color: #666;
+      font-size: 16px;
+    }
+  }
+  
+  .click-for-more {
+    text-align: center;
+    margin-top: 25px;
+    
+    a {
+      display: inline-block;
+      padding: 12px 28px;
+      background: linear-gradient(135deg, #0070f3 0%, #0051cc 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 112, 243, 0.2);
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 112, 243, 0.3);
+        background: linear-gradient(135deg, #0051cc 0%, #003d99 100%);
+      }
+    }
+  }
+  
+  .loading, .error {
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 18px;
+    color: #666;
+  }
+  
+  .error {
+    color: #e53935;
+  }
+  
+  .retry-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 24px;
+    background: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    
+    &:hover {
+      background: #0051cc;
+    }
+  }
+  
+  .ad {
+    height: 100px;
+    background: #f8f9fa;
+    margin: 30px 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-style: italic;
+    border: 2px dashed #dee2e6;
+  }
+  
+  .more-text-informations {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #eaeaea;
+    
+    h1 {
+      font-size: 32px;
+      color: #333;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    h2 {
+      font-size: 24px;
+      color: #333;
+      margin: 30px 0 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    p {
+      line-height: 1.8;
+      margin: 15px 0 20px;
+      color: #555;
+      font-size: 16px;
+      
+      &#txt1, &#txt2 {
+        text-align: justify;
+      }
+    }
+    
+    ul {
+      margin: 15px 0 25px;
+      padding-left: 20px;
+      
+      li {
+        margin: 12px 0;
+        line-height: 1.7;
+        color: #555;
+        
+        span {
+          font-weight: 600;
+          color: #333;
+        }
+      }
+    }
+  }
+  
+  .square-ad {
+    height: 300px;
+    background: #f8f9fa;
+    margin: 40px 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-style: italic;
+    border: 2px dashed #dee2e6;
   }
 }
 
-@media screen and (max-width: 500px) {
-    #ip-checker {
-        padding: 0;
-        .ip-check-container {
-            margin: 0;
-            padding: 10px;
-            width: 100%;
-            flex-direction: column;
-            
-            .ip-datas {
-                width: 100%;
-                
-                .ip-address-nm {
-                    display: flex !important;
-                    justify-content: space-between !important;
-                }
-                p {
-                    span {
-                        &:last-child {
-                            text-align: right !important;
-                        }
-                    }
-                }
-            }
-
-            .map {
-                width: 100%;
-
-                .mapp {
-                    width: 100%;
-                }
-
-                .click-for-more {
-                    width: 100%;
-                    a {
-                        text-align: center;
-                        width: 100%;
-                        display: block;
-                    }
-                }
-            }
-        }
-
-        .more-text-informations {
-            padding: 10px;
-
-            h1 {
-                font-size: 22px;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-
-            p {
-                font-size: 15px;
-            }
-
-            ul {
-                font-size: 15px;
-            }
-        }
+// Leaflet map uchun qo'shimcha stillar
+.leaflet-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  
+  .leaflet-control-attribution {
+    font-size: 11px;
+  }
+  
+  .leaflet-popup-content {
+    font-size: 14px;
+    min-width: 200px;
+    
+    strong {
+      color: #0070f3;
     }
+  }
+  
+  .leaflet-marker-icon {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
 }
 
+// Responsive design
+@media (max-width: 768px) {
+  #ip-checker {
+    padding: 10px;
+    
+    .ip-check-container {
+      padding: 20px;
+    }
+    
+    .ip-datas {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+    
+    .map-section {
+      .map-container-wrapper {
+        .leaflet-map-container {
+          height: 350px;
+        }
+      }
+    }
+    
+    .click-for-more a {
+      width: 100%;
+      padding: 15px;
+    }
+    
+    .more-text-informations {
+      h1 {
+        font-size: 28px;
+      }
+      
+      h2 {
+        font-size: 22px;
+      }
+    }
+  }
+}
