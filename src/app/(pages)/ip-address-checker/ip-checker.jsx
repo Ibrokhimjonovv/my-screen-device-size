@@ -4,6 +4,8 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import "./ip-checker.scss";
+import dynamic from 'next/dynamic';
+const MapWithNoSSR = dynamic(() => import('../../../components/mapComp/map-component'), { ssr: false });
 
 // Leaflet icons fix
 delete L.Icon.Default.prototype._getIconUrl;
@@ -13,8 +15,6 @@ L.Icon.Default.mergeOptions({
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
 
-import dynamic from 'next/dynamic';
-const MapWithNoSSR = dynamic(() => import('../../../components/mapComp/map-component'), { ssr: false });
 
 const IpChecker = () => {
     const [ipData, setIpData] = useState(null);

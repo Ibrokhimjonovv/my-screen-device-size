@@ -5,6 +5,9 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import "./ip.scss"
+import dynamic from 'next/dynamic';
+const MapWithNoSSR = dynamic(() => import('../../../components/mapComp/map-component'), { ssr: false });
+
 
 // Leaflet icons fix
 delete L.Icon.Default.prototype._getIconUrl;
@@ -166,25 +169,13 @@ const IpDetail = ({ ip }) => {
                     </div>
                     <div className="map">
                         {ipData.lat && ipData.lon && (
-                            <MapContainer
-                                center={[ipData.lat, ipData.lon]}
-                                zoom={4}
-                                style={{ height: '100%', width: '100%' }}
-                            >
-                                <TileLayer
-                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                />
-                                <Marker position={[ipData.lat, ipData.lon]}>
-                                    <Popup>
-                                        <div>
-                                            <strong>{ipData.country}</strong><br />
-                                            {ipData.isp}
-                                        </div>
-                                    </Popup>
-                                </Marker>
-                            </MapContainer>
-                        )}
+                                    <MapWithNoSSR
+                                        lat={ipData.lat}
+                                        lon={ipData.lon}
+                                        country={ipData.country}
+                                        isp={ipData.isp}
+                                    />
+                                )}
                     </div>
                 </div>
                 <p id='war'>
