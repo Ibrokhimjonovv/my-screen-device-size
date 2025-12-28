@@ -21,7 +21,6 @@ export const metadata = {
     description: 'Check your IPv4 and IPv6 addresses, ISP, and location. Simple and private IP checker tool.',
     images: ['https://my-device-size.vercel.app/preview-ip.png'],
   },
-  themeColor: '#0ea5e9',
   alternates: {
     canonical: 'https://my-device-size.vercel.app/ip-checker',
   },
