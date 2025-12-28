@@ -68,7 +68,6 @@ export const metadata = {
     "geo.position": "0;0",
     "ICBM": "0, 0",
     "application-name": "My Device Size",
-    "color-scheme": "light dark",
     "viewport": "width=device-width, initial-scale=1",
   },
 };
