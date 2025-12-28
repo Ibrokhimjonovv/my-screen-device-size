@@ -68,8 +68,6 @@ export const metadata = {
     "geo.position": "0;0",
     "ICBM": "0, 0",
     "application-name": "My Device Size",
-    "msapplication-TileColor": "#0ea5e9",
-    "theme-color": "#0ea5e9",
     "color-scheme": "light dark",
     "viewport": "width=device-width, initial-scale=1",
   },
