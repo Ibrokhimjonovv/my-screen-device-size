@@ -542,10 +542,10 @@ export async function generateMetadata({ params }) {
       type: 'article',
       title: `${device.name} Specifications | м17`,
       description: `Viewport: ${device.viewport}, Resolution: ${device.resolution}, Screen Size: ${device.screen_size}`,
-      url: `https://my-device-size.vercel.app/all-devices-size/${device.slug}`,
+      url: `https://mydevicesize.uz/all-devices-size/${device.slug}`,
       images: [
         {
-          url: 'https://my-device-size.vercel.app/preview-devices.png',
+          url: 'https://mydevicesize.uz/preview-devices.png',
           width: 1200,
           height: 630,
           alt: `${device.name} specifications`
@@ -556,10 +556,10 @@ export async function generateMetadata({ params }) {
       card: 'summary_large_image',
       title: `${device.name} - Device Specifications | м17`,
       description: `Viewport: ${device.viewport} • Resolution: ${device.resolution} • Screen: ${device.screen_size}`,
-      images: ['https://my-device-size.vercel.app/preview-devices.png'],
+      images: ['https://mydevicesize.uz/preview-devices.png'],
     },
     alternates: {
-      canonical: `https://my-device-size.vercel.app/all-devices-size/${device.slug}`,
+      canonical: `https://mydevicesize.uz/all-devices-size/${device.slug}`,
     },
   };
 }

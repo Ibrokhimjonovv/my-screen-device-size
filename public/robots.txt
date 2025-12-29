@@ -1,4 +1,4 @@
 # robots.txt
 User-agent: *
 Allow: /
-Sitemap: https://my-device-size.vercel.app/sitemap.xml
+Sitemap: https://mydevicesize.uz/sitemap.xml

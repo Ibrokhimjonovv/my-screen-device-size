@@ -9,16 +9,16 @@ export async function generateMetadata({ params }) {
     title: `IP Details for ${ip} | My Device Size`,
     description: `View detailed information about IP address ${ip}: ISP, country, region, city, timezone, and coordinates.`,
     alternates: {
-      canonical: `https://my-device-size.vercel.app/ip-address-checker/ip/${ip}`,
+      canonical: `https://mydevicesize.uz/ip-address-checker/ip/${ip}`,
     },
     openGraph: {
       title: `IP Details for ${ip}`,
       description: `Find all information for ${ip}: ISP, organization, timezone, region, and coordinates.`,
-      url: `https://my-device-size.vercel.app/ip-address-checker/ip/${ip}`,
+      url: `https://mydevicesize.uz/ip-address-checker/ip/${ip}`,
       siteName: "My Device Size IP Tools",
       images: [
         {
-          url: "https://my-device-size.vercel.app/preview-devices.png",
+          url: "https://mydevicesize.uz/preview-devices.png",
           width: 768,
           height: 292,
         },
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }) {
       title: `IP Details for ${ip}`,
       description: `Discover ISP, region, timezone, and location details for ${ip} instantly.`,
       images: [
-        "https://my-device-size.vercel.app/preview-devices.png",
+        "https://mydevicesize.uz/preview-devices.png",
       ],
     },
   }

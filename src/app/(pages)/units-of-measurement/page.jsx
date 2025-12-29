@@ -9,21 +9,21 @@ export const metadata = {
   robots: 'index, follow',
   openGraph: {
     type: 'website',
-    url: 'https://my-device-size.vercel.app/units-of-measurement',
+    url: 'https://mydevicesize.uz/units-of-measurement',
     siteName: 'My Device Size | м17',
     title: 'Unit Converter — CSS & Screen Measurement Tool | м17',
     description: 'Easily convert CSS units like px, em, rem, pt, vw, vh, and more. Explore a detailed table of measurement equivalents — created by м17.',
-    images: ['https://my-device-size.vercel.app/preview-devices.png'],
+    images: ['https://mydevicesize.uz/preview-devices.png'],
   },
   twitter: {
     card: 'summary_large_image',
     site: '@mydevicesize',
     title: 'Unit Converter & CSS Measurement Reference | м17',
     description: 'Quickly convert px, em, rem, cm, mm, pt, vw, vh and other units. Useful for developers designing responsive web layouts.',
-    images: ['https://my-device-size.vercel.app/preview-devices.png'],
+    images: ['https://mydevicesize.uz/preview-devices.png'],
   },
   alternates: {
-    canonical: 'https://my-device-size.vercel.app/units-of-measurement',
+    canonical: 'https://mydevicesize.uz/units-of-measurement',
   },
 };
 

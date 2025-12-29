@@ -8,21 +8,21 @@ export const metadata = {
   robots: 'index, follow',
   openGraph: {
     type: 'website',
-    url: 'https://my-device-size.vercel.app/all-devices-size',
+    url: 'https://mydevicesize.uz/all-devices-size',
     siteName: 'My Device Size | м17',
     title: 'Device Viewport Sizes & Resolution Database | м17',
     description: 'Comprehensive database of mobile, tablet, and laptop viewport sizes, screen resolutions, and pixel densities for responsive web development.',
-    images: ['https://my-device-size.vercel.app/preview-devices.png'],
+    images: ['https://mydevicesize.uz/preview-devices.png'],
   },
   twitter: {
     card: 'summary_large_image',
     site: '@mydevicesize',
     title: 'Device Viewport Size Database | м17',
     description: 'Find viewport dimensions, screen resolutions, and pixel ratios for all popular devices. Essential tool for responsive web design.',
-    images: ['https://my-device-size.vercel.app/preview-devices.png'],
+    images: ['https://mydevicesize.uz/preview-devices.png'],
   },
   alternates: {
-    canonical: 'https://my-device-size.vercel.app/all-devices-size',
+    canonical: 'https://mydevicesize.uz/all-devices-size',
   },
 };
 

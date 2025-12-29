@@ -23,13 +23,13 @@ const Hide = () => {
             "name": "My Device Size",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://my-device-size.vercel.app/favicon.png"
+              "url": "https://mydevicesize.uz/favicon.png"
             }
           },
           "datePublished": new Date().toISOString().split('T')[0],
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://my-device-size.vercel.app/hide-my-ip-address"
+            "@id": "https://mydevicesize.uz/hide-my-ip-address"
           }
         };
 

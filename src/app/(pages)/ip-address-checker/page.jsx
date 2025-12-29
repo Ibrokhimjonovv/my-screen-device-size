@@ -10,21 +10,21 @@ export const metadata = {
   robots: 'index, follow',
   openGraph: {
     type: 'website',
-    url: 'https://my-device-size.vercel.app/ip-address-checker',
+    url: 'https://mydevicesize.uz/ip-address-checker',
     siteName: 'My Device Size | м17',
     title: 'Free IP Address Checker - Find Your Public IP Instantly | м17',
     description: 'Instantly check your public IP address and location. See your ISP, country, city, and view your location on interactive map.',
-    images: ['https://my-device-size.vercel.app/preview-ip.png'],
+    images: ['https://mydevicesize.uz/preview-ip.png'],
   },
   twitter: {
     card: 'summary_large_image',
     site: '@mydevicesize',
     title: 'My IP Address Checker - Find Your IP Instantly | м17',
     description: 'Check your IPv4 and IPv6 addresses, ISP, and location. Simple and private IP checker tool.',
-    images: ['https://my-device-size.vercel.app/preview-ip.png'],
+    images: ['https://mydevicesize.uz/preview-ip.png'],
   },
   alternates: {
-    canonical: 'https://my-device-size.vercel.app/ip-address-checker',
+    canonical: 'https://mydevicesize.uz/ip-address-checker',
   },
   other: {
     'geo.region': 'global',
