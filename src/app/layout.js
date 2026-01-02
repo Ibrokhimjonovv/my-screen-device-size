@@ -40,11 +40,6 @@ export const metadata = {
     description: "Free tools for checking device viewport sizes, IP addresses, and CSS unit conversions",
     images: ["https://mydevicesize.uz/preview.jpg"],
   },
-  verification: {
-    google: "your-google-verification-code", // Google Search Console code
-    yandex: "your-yandex-verification-code", // Yandex Webmaster code
-    // bing: "your-bing-verification-code", // Bing Webmaster code (optional)
-  },
   alternates: {
     canonical: "https://mydevicesize.uz",
     languages: {

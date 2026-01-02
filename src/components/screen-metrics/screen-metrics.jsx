@@ -1,7 +1,6 @@
 'use client'
 import { useState, useEffect, useRef } from "react";
 import "./screen-metrics.scss";
-import GoogleAdInArticle from "../google-ads/ad-in-article";
 
 function ScreenMetrics() {
     const [metrics, setMetrics] = useState({});
@@ -71,7 +70,6 @@ function ScreenMetrics() {
     return (
         <div id="screen-metrics">
             <div className="home-screen-ad">
-                <GoogleAdInArticle />
             </div>
             <h2 ref={headingRef}>Screen metrics</h2>
             <div className="containers">
