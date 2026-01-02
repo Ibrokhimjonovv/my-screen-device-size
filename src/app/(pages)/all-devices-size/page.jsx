@@ -1,7 +1,7 @@
 import Devices from "./devices";
 
 export const metadata = {
-  title: 'Device Viewport Sizes & Screen Resolution Database | м17',
+  title: 'Devices Viewport Sizes & Screen Resolution Database | м17',
   description: 'Complete database of device viewport sizes, screen resolutions, pixel ratios, and PPI for responsive web design. Find iPhone, Samsung, Google Pixel, tablet, and laptop viewport dimensions. Compare device resolutions, screen sizes, and CSS PPI for mobile-first development.',
   keywords: 'device viewport sizes, screen resolution database, responsive design, pixel ratio, CSS PPI, mobile viewport, tablet dimensions, iPhone viewport, Samsung viewport, responsive breakpoints, device dimensions, mobile devices, viewport meta tag, device-width',
   authors: [{ name: 'м17' }],
