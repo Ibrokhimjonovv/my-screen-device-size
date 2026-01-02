@@ -24,7 +24,7 @@ export const metadata = {
     description: "Check device viewport sizes, find your IP address, and convert CSS units. Essential tools for responsive web design and development.",
     images: [
       {
-        url: "https://mydevicesize.uz/og-image.png",
+        url: "https://mydevicesize.uz/preview.jpg",
         width: 1200,
         height: 630,
         alt: "My Device Size - Web Development Tools",
@@ -38,7 +38,7 @@ export const metadata = {
     creator: "@mydevicesize",
     title: "My Device Size - Device Viewport Sizes & Web Tools",
     description: "Free tools for checking device viewport sizes, IP addresses, and CSS unit conversions",
-    images: ["https://mydevicesize.uz/twitter-image.png"],
+    images: ["https://mydevicesize.uz/preview.jpg"],
   },
   verification: {
     google: "your-google-verification-code", // Google Search Console code
