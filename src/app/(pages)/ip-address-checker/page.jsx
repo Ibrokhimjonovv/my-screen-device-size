@@ -14,14 +14,14 @@ export const metadata = {
     siteName: 'My Device Size | м17',
     title: 'Free IP Address Checker - Find Your Public IP Instantly | м17',
     description: 'Instantly check your public IP address and location. See your ISP, country, city, and view your location on interactive map.',
-    images: ['https://mydevicesize.uz/preview-ip.png'],
+    images: ['https://mydevicesize.uz/preview.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
     site: '@mydevicesize',
     title: 'My IP Address Checker - Find Your IP Instantly | м17',
     description: 'Check your IPv4 and IPv6 addresses, ISP, and location. Simple and private IP checker tool.',
-    images: ['https://mydevicesize.uz/preview-ip.png'],
+    images: ['https://mydevicesize.uz/preview.jpg'],
   },
   alternates: {
     canonical: 'https://mydevicesize.uz/ip-address-checker',

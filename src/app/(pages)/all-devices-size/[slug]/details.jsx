@@ -43,7 +43,7 @@ export default function DeviceDetail({ device }) {
         "@type": "Brand",
         "name": device.name.includes('iPhone') ? 'Apple' :
           device.name.includes('Samsung') ? 'Samsung' :
-            device.name.includes('Honor') ? 'Honor' : 'Unknown'
+            device.name.includes('Honor') ? 'Honor' : device.name
       },
       "additionalProperty": [
         {

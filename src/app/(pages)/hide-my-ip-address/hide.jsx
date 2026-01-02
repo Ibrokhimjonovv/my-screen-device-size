@@ -23,7 +23,7 @@ const Hide = () => {
             "name": "My Device Size",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://mydevicesize.uz/favicon.png"
+              "url": "https://mydevicesize.uz/favicon.ico"
             }
           },
           "datePublished": new Date().toISOString().split('T')[0],

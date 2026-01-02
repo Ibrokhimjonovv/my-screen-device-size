@@ -13,14 +13,14 @@ export const metadata = {
     siteName: 'My Device Size | м17',
     title: 'Unit Converter — CSS & Screen Measurement Tool | м17',
     description: 'Easily convert CSS units like px, em, rem, pt, vw, vh, and more. Explore a detailed table of measurement equivalents — created by м17.',
-    images: ['https://mydevicesize.uz/preview-devices.png'],
+    images: ['https://mydevicesize.uz/preview.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
     site: '@mydevicesize',
     title: 'Unit Converter & CSS Measurement Reference | м17',
     description: 'Quickly convert px, em, rem, cm, mm, pt, vw, vh and other units. Useful for developers designing responsive web layouts.',
-    images: ['https://mydevicesize.uz/preview-devices.png'],
+    images: ['https://mydevicesize.uz/preview.jpg'],
   },
   alternates: {
     canonical: 'https://mydevicesize.uz/units-of-measurement',

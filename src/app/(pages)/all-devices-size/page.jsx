@@ -12,14 +12,14 @@ export const metadata = {
     siteName: 'My Device Size | м17',
     title: 'Device Viewport Sizes & Resolution Database | м17',
     description: 'Comprehensive database of mobile, tablet, and laptop viewport sizes, screen resolutions, and pixel densities for responsive web development.',
-    images: ['https://mydevicesize.uz/preview-devices.png'],
+    images: ['https://mydevicesize.uz/preview.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
     site: '@mydevicesize',
     title: 'Device Viewport Size Database | м17',
     description: 'Find viewport dimensions, screen resolutions, and pixel ratios for all popular devices. Essential tool for responsive web design.',
-    images: ['https://mydevicesize.uz/preview-devices.png'],
+    images: ['https://mydevicesize.uz/preview.jpg'],
   },
   alternates: {
     canonical: 'https://mydevicesize.uz/all-devices-size',

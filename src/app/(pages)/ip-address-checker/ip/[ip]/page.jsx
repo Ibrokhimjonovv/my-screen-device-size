@@ -18,7 +18,7 @@ export async function generateMetadata({ params }) {
       siteName: "My Device Size IP Tools",
       images: [
         {
-          url: "https://mydevicesize.uz/preview-devices.png",
+          url: "https://mydevicesize.uz/preview.jpg",
           width: 768,
           height: 292,
         },
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }) {
       title: `IP Details for ${ip}`,
       description: `Discover ISP, region, timezone, and location details for ${ip} instantly.`,
       images: [
-        "https://mydevicesize.uz/preview-devices.png",
+        "https://mydevicesize.uz/preview.jpg",
       ],
     },
   }

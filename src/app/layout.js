@@ -86,12 +86,12 @@ export default function RootLayout({ children }) {
         <head>
           {/* Favicon for all platforms */}
           <link rel="icon" href="/favicon.ico" sizes="any" />
-          <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-          <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+          <link rel="icon" href="/favicon.ico" type="image/svg+xml" />
+          <link rel="apple-touch-icon" href="/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
           
           {/* Windows */}
-          <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+          <meta name="msapplication-TileImage" content="/favicon.ico" />
           
           {/* Apple */}
           <meta name="apple-mobile-web-app-capable" content="yes" />
