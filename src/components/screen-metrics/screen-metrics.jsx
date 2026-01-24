@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from "react";
 import "./screen-metrics.scss";
+import YanHomeAd1 from "../yan-ads/home-ad/yan-home.jsx"
 
 function ScreenMetrics() {
     const [metrics, setMetrics] = useState({});
@@ -70,6 +71,7 @@ function ScreenMetrics() {
     return (
         <div id="screen-metrics">
             <div className="home-screen-ad">
+                <YanHomeAd1 />
             </div>
             <h2 ref={headingRef}>Screen metrics</h2>
             <div className="containers">
