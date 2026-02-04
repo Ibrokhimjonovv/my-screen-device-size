@@ -1,4 +1,7 @@
 # robots.txt
 User-agent: *
 Allow: /
+Disallow: /_next/
+Host: https://mydevicesize.uz/
+
 Sitemap: https://mydevicesize.uz/sitemap.xml

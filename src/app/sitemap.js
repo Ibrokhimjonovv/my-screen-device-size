@@ -1106,7 +1106,7 @@ export default async function sitemap() {
         {
             url: `${baseUrl}/ip-address-checker`,
             lastModified: new Date(),
-            changeFrequency: 'weekly',
+            changeFrequency: 'daily',
             priority: 0.8,
         },
         {
@@ -1127,7 +1127,7 @@ export default async function sitemap() {
     const devicePages = devices.map(device => ({
         url: `${baseUrl}/all-devices-size/${device.slug}`,
         lastModified: new Date(),
-        changeFrequency: 'monthly',
+        changeFrequency: 'weekly',
         priority: 1,
     }));
 

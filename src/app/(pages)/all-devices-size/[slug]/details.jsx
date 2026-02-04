@@ -74,12 +74,19 @@ export default function DeviceDetail({ device }) {
         }
       ],
       "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock"
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      // Shu yerga qo‘shamiz
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "1"
       }
     };
+
 
     const script = document.createElement('script');
     script.type = 'application/ld+json';
@@ -145,7 +152,7 @@ export default function DeviceDetail({ device }) {
       {/* Asosiy xususiyatlar */}
       <div className="device-specs">
         <div className="device-inner-ad-1">
-            <DeviceInnerAd1 />
+          <DeviceInnerAd1 />
         </div>
         <h2>Device Specifications</h2>
 
