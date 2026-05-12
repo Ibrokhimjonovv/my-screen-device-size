@@ -4,44 +4,78 @@ import IpDetail from './ip-detail'
 
 export async function generateMetadata({ params }) {
   const { ip } = await params
-  
+
   return {
-    title: `IP Details for ${ip} | My Device Size`,
-    description: `View detailed information about IP address ${ip}: ISP, country, region, city, timezone, and coordinates.`,
+    title: `IP Address ${ip} Details - Location, ISP & Info | MyDeviceSize`,
+    description: `Detailed information about IP address ${ip}: ISP, country, region, city, timezone, and exact coordinates. Free IP lookup tool.`,
+    
+    keywords: `${ip}, ip address lookup, ip details, ${ip} location, ${ip} isp, ip checker, ip geolocation, ip tracker`,
+
+    authors: [{ name: 'M17' }],
+
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+
+    openGraph: {
+      type: 'website',
+      locale: 'en_US',
+      url: `https://mydevicesize.uz/ip-address-checker/ip/${ip}`,
+      siteName: 'My Device Size | M17',
+      title: `IP ${ip} - Location, ISP & Details | MyDeviceSize`,
+      description: `Find all information for ${ip}: ISP, organization, timezone, region, city and coordinates.`,
+      images: [{
+        url: 'https://mydevicesize.uz/preview.jpg',
+        width: 1200,
+        height: 630,
+        alt: `IP Address ${ip} Details`,
+      }],
+    },
+
+    twitter: {
+      card: 'summary_large_image',
+      site: '@mydevicesize',
+      creator: '@mydevicesize',
+      title: `IP ${ip} Details | MyDeviceSize`,
+      description: `Discover ISP, region, timezone, and location for ${ip} instantly.`,
+      images: ['https://mydevicesize.uz/preview.jpg'],
+    },
+
     alternates: {
       canonical: `https://mydevicesize.uz/ip-address-checker/ip/${ip}`,
-    },
-    openGraph: {
-      title: `IP Details for ${ip}`,
-      description: `Find all information for ${ip}: ISP, organization, timezone, region, and coordinates.`,
-      url: `https://mydevicesize.uz/ip-address-checker/ip/${ip}`,
-      siteName: "My Device Size IP Tools",
-      images: [
-        {
-          url: "https://mydevicesize.uz/preview.jpg",
-          width: 768,
-          height: 292,
-        },
-      ],
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `IP Details for ${ip}`,
-      description: `Discover ISP, region, timezone, and location details for ${ip} instantly.`,
-      images: [
-        "https://mydevicesize.uz/preview.jpg",
-      ],
     },
   }
 }
 
 export default async function Page({ params }) {
   const { ip } = await params
-  
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mydevicesize.uz" },
+      { "@type": "ListItem", "position": 2, "name": "IP Checker", "item": "https://mydevicesize.uz/ip-address-checker" },
+      { "@type": "ListItem", "position": 3, "name": `IP: ${ip}`, "item": `https://mydevicesize.uz/ip-address-checker/ip/${ip}` }
+    ]
+  }
+
   return (
-    <Suspense fallback={<div style={{padding: '20px', textAlign: 'center'}}>Loading IP details...</div>}>
-      <IpDetail ip={ip} />
-    </Suspense>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Suspense fallback={<div style={{ padding: '20px', textAlign: 'center' }}>Loading IP details...</div>}>
+        <IpDetail ip={ip} />
+      </Suspense>
+    </>
   )
 }
