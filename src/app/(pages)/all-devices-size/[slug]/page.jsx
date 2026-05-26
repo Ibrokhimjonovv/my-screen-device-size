@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import DeviceDetail from './details'
-import { devices } from '../../../lib/devices' 
+import { devices } from './devices'
 
 export async function generateMetadata({ params }) {
   const { slug } = await params
