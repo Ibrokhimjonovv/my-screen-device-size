@@ -84,19 +84,19 @@ export default function RootLayout({ children }) {
           <link rel="icon" href="/favicon.ico" type="image/svg+xml" />
           <link rel="apple-touch-icon" href="/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
-          
+
           {/* Windows */}
           <meta name="msapplication-TileImage" content="/favicon.ico" />
-          
+
           {/* Apple */}
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
           <meta name="apple-mobile-web-app-title" content="My Device Size" />
-          
+
           {/* PWA */}
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="application-name" content="My Device Size" />
-          
+
           {/* External scripts (keep your existing ones) */}
           <script
             type="module"
@@ -110,7 +110,7 @@ export default function RootLayout({ children }) {
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
           />
-          
+
           {/* Structured Data for Home Page */}
           <script
             type="application/ld+json"
@@ -142,7 +142,7 @@ export default function RootLayout({ children }) {
               })
             }}
           />
-          
+
           {/* Breadcrumb Structured Data */}
           <script
             type="application/ld+json"
@@ -162,8 +162,11 @@ export default function RootLayout({ children }) {
             }}
           />
 
-        <script>window.yaContextCb=window.yaContextCb||[]</script>
+          <script>window.yaContextCb=window.yaContextCb||[]</script>
           <script src="https://yandex.ru/ads/system/context.js" async></script>
+
+          {/* <!-- Yandex Autoplacement 18327964 --> */}
+          <script data-page-id="18327964" src="https://yandex.ru/ads/system/ap-loader.js" async></script>
         </head>
         <body id='__next'>
           <Header />
