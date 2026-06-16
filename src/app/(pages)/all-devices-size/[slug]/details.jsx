@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import './details.scss';
 import { useEffect } from 'react';
-import DeviceInnerAd1 from "../../../../components/yan-ads/device-inner-ad/device-size-inner-ad1.jsx";
 
 export default function DeviceDetail({ device }) {
   const router = useRouter();
@@ -151,9 +150,9 @@ export default function DeviceDetail({ device }) {
 
       {/* Asosiy xususiyatlar */}
       <div className="device-specs">
-        <div className="device-inner-ad-1">
+        {/* <div className="device-inner-ad-1">
           <DeviceInnerAd1 />
-        </div>
+        </div> */}
         <h2>Device Specifications</h2>
 
         <div className="specs-grid">

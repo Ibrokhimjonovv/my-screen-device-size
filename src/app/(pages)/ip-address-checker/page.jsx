@@ -29,9 +29,9 @@ export const metadata = {
     description: 'Instantly check your public IP address and location. See your ISP, country, city, and view your location on interactive map.',
     images: [{
       url: 'https://my-screen-device-size.vercel.app/preview.jpg',
-      width: 1200,                      // ← qo'shildi
-      height: 630,                      // ← qo'shildi
-      alt: 'IP Address Checker Tool',   // ← qo'shildi
+      width: 1200,
+      height: 630,
+      alt: 'IP Address Checker Tool',
     }],
   },
 
