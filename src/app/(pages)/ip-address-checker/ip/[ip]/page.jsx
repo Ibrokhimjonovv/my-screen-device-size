@@ -27,12 +27,12 @@ export async function generateMetadata({ params }) {
     openGraph: {
       type: 'website',
       locale: 'en_US',
-      url: `https://mydevicesize.uz/ip-address-checker/ip/${ip}`,
+      url: `https://my-screen-device-size.vercel.app/ip-address-checker/ip/${ip}`,
       siteName: 'My Device Size | M17',
       title: `IP ${ip} - Location, ISP & Details | MyDeviceSize`,
       description: `Find all information for ${ip}: ISP, organization, timezone, region, city and coordinates.`,
       images: [{
-        url: 'https://mydevicesize.uz/preview.jpg',
+        url: 'https://my-screen-device-size.vercel.app/preview.jpg',
         width: 1200,
         height: 630,
         alt: `IP Address ${ip} Details`,
@@ -45,11 +45,11 @@ export async function generateMetadata({ params }) {
       creator: '@mydevicesize',
       title: `IP ${ip} Details | MyDeviceSize`,
       description: `Discover ISP, region, timezone, and location for ${ip} instantly.`,
-      images: ['https://mydevicesize.uz/preview.jpg'],
+      images: ['https://my-screen-device-size.vercel.app/preview.jpg'],
     },
 
     alternates: {
-      canonical: `https://mydevicesize.uz/ip-address-checker/ip/${ip}`,
+      canonical: `https://my-screen-device-size.vercel.app/ip-address-checker/ip/${ip}`,
     },
   }
 }
@@ -61,9 +61,9 @@ export default async function Page({ params }) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mydevicesize.uz" },
-      { "@type": "ListItem", "position": 2, "name": "IP Checker", "item": "https://mydevicesize.uz/ip-address-checker" },
-      { "@type": "ListItem", "position": 3, "name": `IP: ${ip}`, "item": `https://mydevicesize.uz/ip-address-checker/ip/${ip}` }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://my-screen-device-size.vercel.app" },
+      { "@type": "ListItem", "position": 2, "name": "IP Checker", "item": "https://my-screen-device-size.vercel.app/ip-address-checker" },
+      { "@type": "ListItem", "position": 3, "name": `IP: ${ip}`, "item": `https://my-screen-device-size.vercel.app/ip-address-checker/ip/${ip}` }
     ]
   }
 

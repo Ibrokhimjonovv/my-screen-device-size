@@ -32,81 +32,81 @@ export default function DeviceDetail({ device }) {
     }
   };
 
-  useEffect(() => {
-    // Structured data for SEO
-    const structuredData = {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": device.name,
-      "description": `Viewport size: ${device.viewport}, Resolution: ${device.resolution}, Screen size: ${device.screen_size}`,
-      "category": device.type,
-      "brand": {
-        "@type": "Brand",
-        "name": device.name.includes('iPhone') ? 'Apple' :
-          device.name.includes('Samsung') ? 'Samsung' :
-            device.name.includes('Honor') ? 'Honor' : device.name
-      },
-      "additionalProperty": [
-        {
-          "@type": "PropertyValue",
-          "name": "Viewport Size",
-          "value": device.viewport
-        },
-        {
-          "@type": "PropertyValue",
-          "name": "Resolution",
-          "value": device.resolution
-        },
-        {
-          "@type": "PropertyValue",
-          "name": "Screen Size",
-          "value": device.screen_size
-        },
-        {
-          "@type": "PropertyValue",
-          "name": "Pixel Ratio",
-          "value": `${device.pixel_ratio}x`
-        },
-        {
-          "@type": "PropertyValue",
-          "name": "PPI",
-          "value": device.density_ppi.toString()
-        }
-      ],
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock"
-      },
-      // Shu yerga qo‘shamiz
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5",
-        "reviewCount": "1"
-      }
-    };
+  // useEffect(() => {
+  //   // Structured data for SEO
+  //   const structuredData = {
+  //     "@context": "https://schema.org",
+  //     "@type": "Product",
+  //     "name": device.name,
+  //     "description": `Viewport size: ${device.viewport}, Resolution: ${device.resolution}, Screen size: ${device.screen_size}`,
+  //     "category": device.type,
+  //     "brand": {
+  //       "@type": "Brand",
+  //       "name": device.name.includes('iPhone') ? 'Apple' :
+  //         device.name.includes('Samsung') ? 'Samsung' :
+  //           device.name.includes('Honor') ? 'Honor' : device.name
+  //     },
+  //     "additionalProperty": [
+  //       {
+  //         "@type": "PropertyValue",
+  //         "name": "Viewport Size",
+  //         "value": device.viewport
+  //       },
+  //       {
+  //         "@type": "PropertyValue",
+  //         "name": "Resolution",
+  //         "value": device.resolution
+  //       },
+  //       {
+  //         "@type": "PropertyValue",
+  //         "name": "Screen Size",
+  //         "value": device.screen_size
+  //       },
+  //       {
+  //         "@type": "PropertyValue",
+  //         "name": "Pixel Ratio",
+  //         "value": `${device.pixel_ratio}x`
+  //       },
+  //       {
+  //         "@type": "PropertyValue",
+  //         "name": "PPI",
+  //         "value": device.density_ppi.toString()
+  //       }
+  //     ],
+  //     "offers": {
+  //       "@type": "Offer",
+  //       "price": "0",
+  //       "priceCurrency": "USD",
+  //       "availability": "https://schema.org/InStock"
+  //     },
+  //     // Shu yerga qo‘shamiz
+  //     "aggregateRating": {
+  //       "@type": "AggregateRating",
+  //       "ratingValue": "5",
+  //       "reviewCount": "1"
+  //     }
+  //   };
 
 
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify(structuredData);
-    script.id = 'structured-data-device';
+  //   const script = document.createElement('script');
+  //   script.type = 'application/ld+json';
+  //   script.text = JSON.stringify(structuredData);
+  //   script.id = 'structured-data-device';
 
-    // Remove existing if exists
-    const existingScript = document.getElementById('structured-data-device');
-    if (existingScript) {
-      existingScript.remove();
-    }
+  //   // Remove existing if exists
+  //   const existingScript = document.getElementById('structured-data-device');
+  //   if (existingScript) {
+  //     existingScript.remove();
+  //   }
 
-    document.head.appendChild(script);
+  //   document.head.appendChild(script);
 
-    return () => {
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-    };
-  }, [device]);
+  //   return () => {
+  //     if (script.parentNode) {
+  //       script.parentNode.removeChild(script);
+  //     }
+  //   };
+  // }, [device]);
 
   // Qurilma turi ikonkasi
   const getDeviceIcon = () => {

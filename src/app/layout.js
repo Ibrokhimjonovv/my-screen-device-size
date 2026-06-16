@@ -18,13 +18,13 @@ export const metadata = {
   robots: "index, follow",
   openGraph: {
     type: "website",
-    url: "https://mydevicesize.uz",
+    url: "https://my-screen-device-size.vercel.app",
     siteName: "My Device Size | м17",
     title: "My Device Size - Device Viewport Sizes & Web Development Tools",
     description: "Check device viewport sizes, find your IP address, and convert CSS units. Essential tools for responsive web design and development.",
     images: [
       {
-        url: "https://mydevicesize.uz/preview.jpg",
+        url: "https://my-screen-device-size.vercel.app/preview.jpg",
         width: 1200,
         height: 630,
         alt: "My Device Size - Web Development Tools",
@@ -38,12 +38,12 @@ export const metadata = {
     creator: "@mydevicesize",
     title: "My Device Size - Device Viewport Sizes & Web Tools",
     description: "Free tools for checking device viewport sizes, IP addresses, and CSS unit conversions",
-    images: ["https://mydevicesize.uz/preview.jpg"],
+    images: ["https://my-screen-device-size.vercel.app/preview.jpg"],
   },
   alternates: {
-    canonical: "https://mydevicesize.uz",
+    canonical: "https://my-screen-device-size.vercel.app",
     languages: {
-      "en-US": "https://mydevicesize.uz",
+      "en-US": "https://my-screen-device-size.vercel.app",
       // Add other languages if needed
     },
   },
@@ -119,14 +119,14 @@ export default function RootLayout({ children }) {
                 "@context": "https://schema.org",
                 "@type": "WebApplication",
                 "name": "My Device Size",
-                "url": "https://mydevicesize.uz",
+                "url": "https://my-screen-device-size.vercel.app",
                 "description": "Free tools for checking device viewport sizes, IP addresses, and CSS unit conversions",
                 "applicationCategory": "DeveloperApplication",
                 "operatingSystem": "Any",
                 "author": {
                   "@type": "Organization",
                   "name": "м17",
-                  "url": "https://mydevicesize.uz"
+                  "url": "https://my-screen-device-size.vercel.app"
                 },
                 "offers": {
                   "@type": "Offer",
@@ -155,7 +155,7 @@ export default function RootLayout({ children }) {
                     "@type": "ListItem",
                     "position": 1,
                     "name": "Home",
-                    "item": "https://mydevicesize.uz"
+                    "item": "https://my-screen-device-size.vercel.app"
                   }
                 ]
               })

@@ -1,4 +1,4 @@
-const baseUrl = 'https://mydevicesize.uz';
+const baseUrl = 'https://my-screen-device-size.vercel.app';
 
 // Qurilmalar ro'yxati
 const devices = [

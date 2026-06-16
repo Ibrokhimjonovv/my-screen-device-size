@@ -22,12 +22,12 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',                          // ← qo'shildi
-    url: 'https://mydevicesize.uz/all-devices-size',
+    url: 'https://my-screen-device-size.vercel.app/all-devices-size',
     siteName: 'My Device Size | M17',
     title: 'Device Viewport Sizes & Resolution Database | M17',
     description: 'Comprehensive database of mobile, tablet, and laptop viewport sizes, screen resolutions, and pixel densities for responsive web development.',
     images: [{
-      url: 'https://mydevicesize.uz/preview.jpg',
+      url: 'https://my-screen-device-size.vercel.app/preview.jpg',
       width: 1200,                             // ← qo'shildi
       height: 630,                             // ← qo'shildi
       alt: 'Device Viewport Sizes Database',  // ← qo'shildi
@@ -40,11 +40,11 @@ export const metadata = {
     creator: '@mydevicesize',                 // ← qo'shildi
     title: 'Device Viewport Size Database | M17',
     description: 'Find viewport dimensions, screen resolutions, and pixel ratios for all popular devices.',
-    images: ['https://mydevicesize.uz/preview.jpg'],
+    images: ['https://my-screen-device-size.vercel.app/preview.jpg'],
   },
 
   alternates: {
-    canonical: 'https://mydevicesize.uz/all-devices-size',
+    canonical: 'https://my-screen-device-size.vercel.app/all-devices-size',
   },
 };
 
@@ -54,11 +54,11 @@ export default function DevicesPage() {
     "@type": "Dataset",
     "name": "Device Viewport Sizes Database",
     "description": "Complete database of device viewport sizes, screen resolutions and pixel ratios for responsive web design",
-    "url": "https://mydevicesize.uz/all-devices-size",
+    "url": "https://my-screen-device-size.vercel.app/all-devices-size",
     "creator": {
       "@type": "Organization",
       "name": "My Device Size",
-      "url": "https://mydevicesize.uz"
+      "url": "https://my-screen-device-size.vercel.app"
     },
     "keywords": ["viewport", "screen resolution", "pixel ratio", "responsive design", "mobile devices"]
   };

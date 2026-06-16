@@ -16,12 +16,12 @@ export async function generateMetadata({ params }) {
         follow: false,
       },
       alternates: {
-        canonical: 'https://mydevicesize.uz/all-devices-size',
+        canonical: 'https://my-screen-device-size.vercel.app/all-devices-size',
       },
     }
   }
 
-  const pageUrl = `https://mydevicesize.uz/all-devices-size/${device.slug}`
+  const pageUrl = `https://my-screen-device-size.vercel.app/all-devices-size/${device.slug}`
   const title = `${device.name} Viewport & Screen Specs | MyDeviceSize`
   const description = `${device.name}: Viewport ${device.viewport}px, Resolution ${device.resolution}, Screen ${device.screen_size}, Pixel Ratio ${device.pixel_ratio}x, PPI ${device.density_ppi}. Full specs for responsive design.`
 
@@ -64,7 +64,7 @@ export async function generateMetadata({ params }) {
       title,
       description,
       images: [{
-        url: 'https://mydevicesize.uz/preview-devices.png',
+        url: 'https://my-screen-device-size.vercel.app/preview-devices.png',
         width: 1200,
         height: 630,
         alt: `${device.name} viewport and screen specifications`,
@@ -77,7 +77,7 @@ export async function generateMetadata({ params }) {
       creator: '@mydevicesize',
       title,
       description: `Viewport: ${device.viewport} • Resolution: ${device.resolution} • Screen: ${device.screen_size} • PPI: ${device.density_ppi}`,
-      images: ['https://mydevicesize.uz/preview-devices.png'],
+      images: ['https://my-screen-device-size.vercel.app/preview-devices.png'],
     },
 
     alternates: {
@@ -92,7 +92,7 @@ export default async function DevicePage({ params }) {
 
   if (!device) notFound()
 
-  const pageUrl = `https://mydevicesize.uz/all-devices-size/${device.slug}`
+  const pageUrl = `https://my-screen-device-size.vercel.app/all-devices-size/${device.slug}`
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -103,7 +103,7 @@ export default async function DevicePage({ params }) {
     "author": {
       "@type": "Organization",
       "name": "My Device Size",
-      "url": "https://mydevicesize.uz"
+      "url": "https://my-screen-device-size.vercel.app"
     },
     "about": {
       "@type": "Product",
@@ -114,8 +114,8 @@ export default async function DevicePage({ params }) {
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mydevicesize.uz" },
-        { "@type": "ListItem", "position": 2, "name": "All Devices", "item": "https://mydevicesize.uz/all-devices-size" },
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://my-screen-device-size.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "All Devices", "item": "https://my-screen-device-size.vercel.app/all-devices-size" },
         { "@type": "ListItem", "position": 3, "name": device.name, "item": pageUrl }
       ]
     }

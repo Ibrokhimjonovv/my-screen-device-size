@@ -22,13 +22,13 @@ export const metadata = {
 
   openGraph: {
     type: 'website',
-    url: 'https://mydevicesize.uz/ip-address-checker',
+    url: 'https://my-screen-device-size.vercel.app/ip-address-checker',
     siteName: 'My Device Size | M17',
     locale: 'en_US',                    // ← qo'shildi
     title: 'Free IP Address Checker - Find Your Public IP Instantly',
     description: 'Instantly check your public IP address and location. See your ISP, country, city, and view your location on interactive map.',
     images: [{
-      url: 'https://mydevicesize.uz/preview.jpg',
+      url: 'https://my-screen-device-size.vercel.app/preview.jpg',
       width: 1200,                      // ← qo'shildi
       height: 630,                      // ← qo'shildi
       alt: 'IP Address Checker Tool',   // ← qo'shildi
@@ -41,11 +41,11 @@ export const metadata = {
     creator: '@mydevicesize',           // ← qo'shildi
     title: 'My IP Address Checker - Find Your IP Instantly',
     description: 'Check your IPv4 and IPv6 addresses, ISP, and location.',
-    images: ['https://mydevicesize.uz/preview.jpg'],
+    images: ['https://my-screen-device-size.vercel.app/preview.jpg'],
   },
 
   alternates: {
-    canonical: 'https://mydevicesize.uz/ip-address-checker',
+    canonical: 'https://my-screen-device-size.vercel.app/ip-address-checker',
   },
 };
 
