@@ -84,6 +84,7 @@ export default function RootLayout({ children }) {
           <link rel="icon" href="/favicon.ico" type="image/svg+xml" />
           <link rel="apple-touch-icon" href="/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
+          <meta name="monetag" content="549341949171ff37c6da8d65327f9e02"></meta>
 
           {/* Windows */}
           <meta name="msapplication-TileImage" content="/favicon.ico" />
