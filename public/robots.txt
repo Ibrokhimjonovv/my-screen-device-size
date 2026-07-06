@@ -2,6 +2,6 @@
 User-agent: *
 Allow: /
 Disallow: /_next/
-Host: https://mydevicesize.uz/
+Host: https://my-device-size.vercel.app/
 
-Sitemap: https://mydevicesize.uz/sitemap.xml
+Sitemap: https://my-device-size.vercel.app/sitemap.xml
